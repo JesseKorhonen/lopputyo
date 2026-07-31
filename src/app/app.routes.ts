@@ -6,7 +6,6 @@ import { loginGuard } from './guards/guard';
 export const routes: Routes = [
   { path: 'reglist', component: ReglistComponent },
   { path: 'loginform', component: LoginformComponent },
-  { path: 'regform', component: RegformComponent },
   { path: 'regform', component: RegformComponent, canActivate: [loginGuard] },
   { path: '', redirectTo: '/reglist', pathMatch: 'full' },
 ];

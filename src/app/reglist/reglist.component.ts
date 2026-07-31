@@ -16,13 +16,13 @@ import { Registration } from '../registration';
   styleUrls: ['reglist.component.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem],
 })
-export class ReglistComponent implements OnInit {
+export class ReglistComponent {
   // muuttuja johon tallennetaan tulostettavat tiedot muuttuja on tyypitetty interfacella
   registrations: Registration[] = [];
   // constructori jossa otetaan service käyttöön
   constructor(public regService: RegService) {}
   // oninit haetaan ilmoittautuneet käyttäjät
-  ngOnInit() {
+  ionViewWillEnter() {
     this.regService.getRegistrations().subscribe({
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
       next: (data) => {

@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../auth.service';
 import {
   IonHeader,
   IonToolbar,
@@ -33,4 +34,9 @@ import {
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  constructor(public authservice: AuthService) {}
+  logOut() {
+    this.authservice.isLoggedIn = false;
+  }
+}
