@@ -14,7 +14,7 @@ import {
 } from '@angular/fire/firestore';
 // tuodaan interface
 import { Registration } from './registration';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 // Määritellään injectablessa, että serviceä voidaan käyttää koko sovelluksessa
 @Injectable({
   providedIn: 'root',
