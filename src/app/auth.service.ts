@@ -45,7 +45,7 @@ export class AuthService {
         this.isLoggedIn = true;
       })
       .catch((error) => {
-        console.log('Something is wrong:', error.message);
+        console.log(`Kirjautuminen epäonnistui`);
       });
   }
 

@@ -9,8 +9,6 @@ import {
   IonicRouteStrategy,
   provideIonicAngular,
 } from '@ionic/angular/standalone';
-import { InMemoryDataService } from './app/in-memory-data.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -25,7 +23,6 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),
-    importProvidersFrom(InMemoryWebApiModule.forRoot(InMemoryDataService)),
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: 'AIzaSyBA2vCanjzCXgTGyZldM9RdxhW5a9jdDcQ',
