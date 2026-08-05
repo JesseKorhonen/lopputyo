@@ -43,7 +43,7 @@ export class RegisterComponent {
     this.authservice
       .signUp(data.username, data.password)
       .then(() => {
-        this.router.navigate(['/regform']);
+        this.router.navigate(['/loginform']);
       })
       .catch(() => {
         console.log(`Rekisteröityminen epäonnistui`);
