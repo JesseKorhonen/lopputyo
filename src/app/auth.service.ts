@@ -1,27 +1,56 @@
-// Tuodaan Injectable
 import { Injectable } from '@angular/core';
-// Tuodaan interface
-import { Credential } from './credential';
-// Tuodaan observable tietojenkäsittelyä varten
-import { Observable } from 'rxjs';
-// Tuodaan HttpClient http pyyntöjen http pyyntöjä varten
-import { HttpClient } from '@angular/common/http';
-// Määritellään injectablella, että service on käytössä koko sovelluksessa
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  User,
+} from '@angular/fire/auth';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // määritellään osoite kirjautumistietojen hakemiseen
-  private apiUrl = 'api/creds';
-  // isLoggedIn muuttuja joka kertoo onko käyttäjä kirjautunut vai ei
-  isLoggedIn: Boolean;
-  // liitetään httpclient
-  constructor(private http: HttpClient) {
-    // määritellään isLoggedIn muuttujan arvo aluksi false, kun sovellus käynnistyy
+  user!: User | null; //Firebasesta saatava käyttäjäolio
+  isLoggedIn: boolean;
+  constructor(private auth: Auth) {
     this.isLoggedIn = false;
   }
-  // haetaan kirjautumistiedot
-  getCreds(): Observable<Credential[]> {
-    return this.http.get<Credential[]>(this.apiUrl);
+  /* Sign up
+  Rekisteröityminen eli jos käyttäjää ei ole, luodaan uusi
+  käyttäjä. Kun homma onnistuu, haetaan käyttäjäolio,
+  jonka avulla päästään käyttöliittymän salaiseen osaan. 
+  */
+  signUp(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.auth, email, password)
+      .then((res) => {
+        console.log('Successfully signed up!', res);
+        this.user = res.user;
+      })
+      .catch((error) => {
+        console.log('Something is wrong:', error.message);
+      });
+  }
+
+  /* Sign in
+  Rekisteröitynyt käyttäjä kirjautuu sisään. Kun homma onnistuu, 
+  haetaan käyttäjäolio, jonka avulla päästään käyttöliittymän 
+  salaiseen osaan.
+  */
+  signIn(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password)
+      .then((res) => {
+        console.log('Successfully signed in!', res);
+        this.user = res.user;
+        this.isLoggedIn = true;
+      })
+      .catch((error) => {
+        console.log('Something is wrong:', error.message);
+      });
+  }
+
+  /* Sign out */
+  signOut() {
+    return signOut(this.auth);
   }
 }

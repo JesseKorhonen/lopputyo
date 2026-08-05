@@ -12,12 +12,12 @@ import {
 import { InMemoryDataService } from './app/in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { provideHttpClient } from '@angular/common/http';
-
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -37,5 +37,6 @@ bootstrapApplication(AppComponent, {
       }),
     ),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
 });
