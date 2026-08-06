@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 export function loginGuard(): boolean {
   // tarkistetaan onko käyttäjä kirjautunut, ja jos on päästetään käyttäjä eteenpäin
-  if (inject(AuthService).isLoggedIn) {
+  if (inject(AuthService).user) {
     return true;
     // näytetään teksti jos käyttäjä ei ole kirjautunut
   } else {

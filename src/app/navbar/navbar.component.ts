@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
+
 import {
   IonHeader,
   IonToolbar,
@@ -35,8 +36,18 @@ import {
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  constructor(public authservice: AuthService) {}
-  logOut() {
-    this.authservice.isLoggedIn = false;
+  email!: string;
+  password!: string;
+  authService = Inject(AuthService);
+  signIn() {
+    this.authService.signIn(this.email, this.password);
+    this.email = '';
+    this.password = '';
+  }
+  signOut() {
+    this.authService
+      .signOut()
+      .then(() => (this.authService.user = null))
+      .catch((e: any) => console.log(e.message));
   }
 }

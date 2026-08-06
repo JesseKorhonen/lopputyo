@@ -20,13 +20,13 @@
       <ion-item routerLink="/regform">
         <ion-label>"Ilmoittaudu"</ion-label>
       </ion-item>
-      @if(authservice.isLoggedIn === true) {
-      <ion-item routerLink="/loginform" (click)="logOut()">
+      @if(authService.user) {
+      <ion-item routerLink="/loginform" (click)="signOut()">
         <ion-label>Kirjaudu ulos</ion-label>
       </ion-item>
       }
       @else{
-      <ion-item routerLink="/loginform">
+      <ion-item routerLink="/loginform" (click)="signIn()">
         <ion-label>Kirjaudu sisään</ion-label>
       </ion-item>
       }

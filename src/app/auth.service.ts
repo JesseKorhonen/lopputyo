@@ -12,10 +12,7 @@ import {
 })
 export class AuthService {
   user!: User | null; //Firebasesta saatava käyttäjäolio
-  isLoggedIn: boolean;
-  constructor(private auth: Auth) {
-    this.isLoggedIn = false;
-  }
+  constructor(private auth: Auth) {}
   /* Sign up
   Rekisteröityminen eli jos käyttäjää ei ole, luodaan uusi
   käyttäjä. Kun homma onnistuu, haetaan käyttäjäolio,
@@ -42,7 +39,6 @@ export class AuthService {
       .then((res) => {
         console.log('Successfully signed in!', res);
         this.user = res.user;
-        this.isLoggedIn = true;
       })
       .catch((error) => {
         console.log(`Kirjautuminen epäonnistui`);
