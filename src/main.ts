@@ -16,23 +16,14 @@ import { importProvidersFrom } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-
+import { environment } from './environments/environment';
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),
-    provideFirebaseApp(() =>
-      initializeApp({
-        apiKey: 'AIzaSyBA2vCanjzCXgTGyZldM9RdxhW5a9jdDcQ',
-        authDomain: 'lopputyo-2362c.firebaseapp.com',
-        projectId: 'lopputyo-2362c',
-        storageBucket: 'jesse-97982.firebasestorage.app',
-        messagingSenderId: '134789759071',
-        appId: '1:134789759071:web:ae7599357740e8aa1adbea',
-      }),
-    ),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
   ],
