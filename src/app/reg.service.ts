@@ -14,6 +14,8 @@ import {
 } from '@angular/fire/firestore';
 // tuodaan interface
 import { Registration } from './registration';
+import { AuthService } from './auth.service';
+
 import { from, Observable } from 'rxjs';
 // Määritellään injectablessa, että serviceä voidaan käyttää koko sovelluksessa
 @Injectable({
@@ -21,10 +23,15 @@ import { from, Observable } from 'rxjs';
 })
 export class RegService {
   private firestore: Firestore = inject(Firestore);
-
+  authService = inject(AuthService);
   postRegistrations(data: Registration): Observable<any> {
+    const user = this.authService.user;
+    const userData = {
+      ...data,
+      id: user?.uid,
+    };
     const regRef = collection(this.firestore, 'reg');
-    return from(addDoc(regRef, data));
+    return from(addDoc(regRef, userData));
   }
   getRegistrations(): Observable<Registration[]> {
     const regRef = collection(this.firestore, 'reg');
