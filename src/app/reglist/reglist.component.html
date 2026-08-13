@@ -18,7 +18,7 @@
     <ion-item> {{reg.email}}</ion-item>
     <ion-item> {{reg.food}}</ion-item>
     <ion-item> {{reg.sauna}}</ion-item>
-    @if(reg.userId === reg.id) {
+    @if(reg.userId === authService.user.uid) {
     <ion-button (click)="remove(reg)">Poista</ion-button>
     }
     }

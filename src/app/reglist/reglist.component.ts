@@ -10,6 +10,7 @@ import {
 } from '@ionic/angular/standalone';
 import { RegService } from '../reg.service';
 import { Registration } from '../registration';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-reglist',
   templateUrl: 'reglist.component.html',
@@ -28,7 +29,10 @@ export class ReglistComponent {
   // muuttuja johon tallennetaan tulostettavat tiedot muuttuja on tyypitetty interfacella
   registrations: Registration[] = [];
   // constructori jossa otetaan service käyttöön
-  constructor(public regService: RegService) {}
+  constructor(
+    public regService: RegService,
+    authService: AuthService,
+  ) {}
   ionViewWillEnter() {
     this.regService.getRegistrations().subscribe({
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
