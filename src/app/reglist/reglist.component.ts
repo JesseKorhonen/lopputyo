@@ -6,15 +6,23 @@ import {
   IonContent,
   IonList,
   IonItem,
+  IonButton,
 } from '@ionic/angular/standalone';
 import { RegService } from '../reg.service';
 import { Registration } from '../registration';
-
 @Component({
   selector: 'app-reglist',
   templateUrl: 'reglist.component.html',
   styleUrls: ['reglist.component.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonItem,
+    IonButton,
+  ],
 })
 export class ReglistComponent {
   // muuttuja johon tallennetaan tulostettavat tiedot muuttuja on tyypitetty interfacella

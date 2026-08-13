@@ -28,7 +28,7 @@ export class RegService {
     const user = this.authService.user;
     const userData = {
       ...data,
-      id: user?.uid,
+      userId: user?.uid,
     };
     const regRef = collection(this.firestore, 'reg');
     return from(addDoc(regRef, userData));

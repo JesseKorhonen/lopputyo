@@ -1,6 +1,7 @@
 // interface joka määrittelee ilmoittautuneen käyttäjän rakenteen
 export interface Registration {
-  id: number;
+  userId: string;
+  id: string;
   name: string;
   email: string;
   food: string;
