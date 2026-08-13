@@ -21,14 +21,11 @@ export class ReglistComponent {
   registrations: Registration[] = [];
   // constructori jossa otetaan service käyttöön
   constructor(public regService: RegService) {}
-  // oninit haetaan ilmoittautuneet käyttäjät
   ionViewWillEnter() {
     this.regService.getRegistrations().subscribe({
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
       next: (data) => {
         this.registrations = data;
-        // tulostetaan ensimmäinen alkio konsoliin debuggausta varten tämä consolelog on valmiissa koodissa turha
-        console.log(this.registrations[0]);
       },
       // tehdään virheenkäsittely
       error: (error) => {
@@ -36,5 +33,11 @@ export class ReglistComponent {
         console.error(error);
       },
     });
+  }
+  remove(c: Registration) {
+    this.registrations = this.registrations.filter(
+      (registrations) => registrations !== c,
+    );
+    this.regService.removeReg(c.id).then();
   }
 }

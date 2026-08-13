@@ -15,6 +15,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { RegService } from '../reg.service';
 import { Registration } from '../registration';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,6 +41,7 @@ export class RegformComponent {
   constructor(
     private router: Router,
     private regservice: RegService,
+    private authService: AuthService,
   ) {}
   onSubmit(data: any) {
     if (data.sauna) {

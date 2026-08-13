@@ -18,5 +18,8 @@
     <ion-item> {{reg.email}}</ion-item>
     <ion-item> {{reg.food}}</ion-item>
     <ion-item> {{reg.sauna}}</ion-item>
+    @if(authService.user.uid=== reg.id) {
+    <ion-button></ion-button>
+    }
     }
   </ion-list>

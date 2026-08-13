@@ -39,4 +39,8 @@ export class RegService {
       Registration[]
     >;
   }
+  removeReg(id: string) {
+    const regRef = doc(this.firestore, 'reg');
+    return deleteDoc(regRef);
+  }
 }
