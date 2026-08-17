@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, Inject, Injectable } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -29,10 +29,9 @@ export class ReglistComponent {
   // muuttuja johon tallennetaan tulostettavat tiedot muuttuja on tyypitetty interfacella
   registrations: Registration[] = [];
   // constructori jossa otetaan service käyttöön
-  constructor(
-    public regService: RegService,
-    authService: AuthService,
-  ) {}
+  constructor(public regService: RegService) {}
+  authService = inject(AuthService);
+
   ionViewWillEnter() {
     this.regService.getRegistrations().subscribe({
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
