@@ -16,5 +16,8 @@
       <ion-input type="password" ngModel name="password" required placeHolder="Salasana"></ion-input>
     </ion-item>
     <ion-button type="submit" [disabled]="!f.valid">kirjaudu</ion-button>
+    <!-- @if(!f.valid) { -->
+    <!-- <p>Kirjautuminen epäonnistui></p> -->
+    <!-- } -->
   </form>
 </ion-content>

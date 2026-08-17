@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -29,7 +29,6 @@ import {
     IonContent,
     IonList,
     IonLabel,
-    IonRouterOutlet,
     RouterLink,
   ],
   templateUrl: './navbar.component.html',
@@ -38,7 +37,7 @@ import {
 export class NavbarComponent {
   email!: string;
   password!: string;
-  authService = Inject(AuthService);
+  authService = inject(AuthService);
   signIn() {
     this.authService.signIn(this.email, this.password);
     this.email = '';
