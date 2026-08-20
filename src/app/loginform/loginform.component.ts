@@ -32,6 +32,7 @@ import { Router } from '@angular/router';
 export class LoginformComponent {
   // credentials muuttuja joka saa interfacelle menevät arvot
   credentials: Credential[];
+  err: boolean = false;
   // Constructori jossa määritellään, että credentialmuuttuja on tyhjä ja että serviceja reititys ovat privaatteja
   constructor(
     private router: Router,
@@ -50,7 +51,7 @@ export class LoginformComponent {
           this.router.navigate(['/regform']);
         })
         .catch(() => {
-          console.log(`Kirjautuminen epäonnistui`);
+          this.err = true;
         });
     }
     // tulostetaan teksti jos kirjautuminen epäonnistui
