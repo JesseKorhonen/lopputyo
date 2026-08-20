@@ -36,17 +36,17 @@ export class ReglistComponent {
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
       next: (data) => {
         this.registrations = data;
-        localStorage.setItem(
-          'registrations',
-          JSON.stringify(this.registrations),
-        );
-      },
-      // tehdään virheenkäsittely
-      error: (error) => {
-        // tulostetaan error konsoliin
-        this.registrations = JSON.parse(
-          localStorage.getItem('registrations') || '{}',
-        );
+
+        if (this.registrations.length > 0) {
+          localStorage.setItem(
+            'registrations',
+            JSON.stringify(this.registrations),
+          );
+        } else {
+          this.registrations = JSON.parse(
+            localStorage.getItem('registrations') || '[]',
+          );
+        }
       },
     });
   }
