@@ -31,17 +31,22 @@ export class ReglistComponent {
   // constructori jossa otetaan service käyttöön
   constructor(public regService: RegService) {}
   authService = inject(AuthService);
-
   ionViewWillEnter() {
     this.regService.getRegistrations().subscribe({
       // jos saadaan haettua tiedot suoritetaan next, jossa tiedot tallennetaan registrations muuttujaan
       next: (data) => {
         this.registrations = data;
+        localStorage.setItem(
+          'registrations',
+          JSON.stringify(this.registrations),
+        );
       },
       // tehdään virheenkäsittely
       error: (error) => {
         // tulostetaan error konsoliin
-        console.error(error);
+        this.registrations = JSON.parse(
+          localStorage.getItem('registrations') || '{}',
+        );
       },
     });
   }

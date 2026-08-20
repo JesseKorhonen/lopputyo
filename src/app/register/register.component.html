@@ -13,8 +13,11 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating"> Salasana</ion-label>
-      <ion-input type="password" ngModel name="password" required placeHolder="Salasana"></ion-input>
+      <ion-input type="password" ngModel name="password" required placeHolder="Salasana" minlenght="6"></ion-input>
     </ion-item>
     <ion-button type="submit" [disabled]="!f.valid">Rekisteröidy</ion-button>
+    @if(this.err == true) {
+    <p>Rekisteröinti epäonnistui</p>
+    }
   </form>
 </ion-content>

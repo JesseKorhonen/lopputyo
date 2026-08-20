@@ -26,6 +26,7 @@ export class AuthService {
       })
       .catch((error) => {
         console.log('Something is wrong:', error.message);
+        throw error;
       });
   }
 
@@ -42,6 +43,7 @@ export class AuthService {
       })
       .catch((error) => {
         console.log(`Kirjautuminen epäonnistui`);
+        throw error;
       });
   }
 

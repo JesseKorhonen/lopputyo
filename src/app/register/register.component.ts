@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   credentials: Credential[];
-
+  err: boolean = false;
   constructor(
     private router: Router,
     private authservice: AuthService,
@@ -47,6 +47,7 @@ export class RegisterComponent {
       })
       .catch(() => {
         console.log(`Rekisteröityminen epäonnistui`);
+        this.err = true;
       });
   }
 }
