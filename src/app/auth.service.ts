@@ -17,7 +17,6 @@ export class AuthService {
     if (data) {
       this.user = JSON.parse(data);
     }
-    this.user = JSON.parse(localStorage.getItem('user') || '[');
   }
 
   /* Sign up
