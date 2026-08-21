@@ -40,6 +40,8 @@ export class AuthService {
       .then((res) => {
         console.log('Successfully signed in!', res);
         this.user = res.user;
+        localStorage.setItem('user', JSON.stringify(this.user));
+        this.user = JSON.parse(localStorage.getItem('user') || '[');
       })
       .catch((error) => {
         console.log(`Kirjautuminen epäonnistui`);
