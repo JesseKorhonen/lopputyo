@@ -12,7 +12,14 @@ import {
 })
 export class AuthService {
   user!: User | null; //Firebasesta saatava käyttäjäolio
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth) {
+    const data = localStorage.getItem('user');
+    if (data) {
+      this.user = JSON.parse(data);
+    }
+    this.user = JSON.parse(localStorage.getItem('user') || '[');
+  }
+
   /* Sign up
   Rekisteröityminen eli jos käyttäjää ei ole, luodaan uusi
   käyttäjä. Kun homma onnistuu, haetaan käyttäjäolio,
@@ -41,7 +48,6 @@ export class AuthService {
         console.log('Successfully signed in!', res);
         this.user = res.user;
         localStorage.setItem('user', JSON.stringify(this.user));
-        this.user = JSON.parse(localStorage.getItem('user') || '[');
       })
       .catch((error) => {
         console.log(`Kirjautuminen epäonnistui`);
@@ -51,6 +57,7 @@ export class AuthService {
 
   /* Sign out */
   signOut() {
+    localStorage.removeItem('user');
     return signOut(this.auth);
   }
 }
